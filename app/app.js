@@ -20,11 +20,12 @@ mongooose.connection.on("error", (err) => {
     console.log('Mongo Error: ' + err);
 });
 
-//
-
 //global middlewares
 //logger
 app.use(logger("short"));
+
+//cross origin resource sharing
+app.use(cors());
 
 //http json request body parser
 app.use(bodyParser.json());
