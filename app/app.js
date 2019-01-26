@@ -7,6 +7,7 @@ const cors = require('cors');
 const mongooose = require('mongoose');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const userRoutes = require('./routes/user');
 
 //node path module
 const path = require('path');
@@ -24,10 +25,12 @@ mongooose.connection.on("error", (err) => {
 //logger
 app.use(logger("short"));
 
+//http json request body parser
+app.use(bodyParser.json());
+
 //cross origin resource sharing
 app.use(cors());
 
-//http json request body parser
-app.use(bodyParser.json());
+app.use('/user', userRoutes);
 
 module.exports = app;
