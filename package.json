@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0-alpha",
+  "description": "Message Board Backend Built as Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OttoVBismarck/phorum-backend.git"
+  },
+  "author": "Frederick JW Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OttoVBismarck/phorum-backend/issues"
+  },
+  "homepage": "https://github.com/OttoVBismarck/phorum-backend#readme"
+}
