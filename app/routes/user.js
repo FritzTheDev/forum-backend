@@ -22,7 +22,35 @@ router.post('/register', (req, res, next) => {
 });
 
 router.post('/authenticate', (req, res, next) => {
-    res.send('Authenticate');
+    const { username, password } = req.body;
+    User.getUserByUsername(username, (err, user) => {
+        if (err) throw err;
+        if (!user) {
+            return res.json({ success: 'False', msg: 'User Not Found' });
+        }
+
+        User.comparePassword(password, user.password, (err, isMatch) => {
+            if (err) throw err;
+        });
+        if (isMatch){
+            const token = jwt.sign(user, process.env.SECRET, {
+                //1 Week in seconds
+                expiresIn: 604800
+            });
+            res.json({
+                success: true,
+                token: 'JWT '+ token,
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                }
+            });
+        } else {
+            return res.json({ success: false, msg: 'Wrong Password'});
+        }
+    });
+
 });
 
 router.get('/profile', (req, res, next) => {
