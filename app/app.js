@@ -8,6 +8,7 @@ const mongooose = require('mongoose');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user');
+const passport = require('passport');
 
 //node path module
 const path = require('path');
@@ -27,6 +28,10 @@ app.use(logger("short"));
 
 //http json request body parser
 app.use(bodyParser.json());
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 //cross origin resource sharing
 app.use(cors());
